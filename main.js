@@ -14,7 +14,14 @@ console.log(SOCBook);
 // Complete the function so it returns Liz Rios' favourite fruit
 
 function lizRiosFavFruit() {
-  // Your code goes here...
+  for(let i = 0; i < SOCBook.data.people.length; i++) {
+    if(SOCBook.data.people[i].name === "Liz Rios") {
+      return SOCBook.data.people[i].favoriteFruit;
+    }
+      
+  }
+  
+
 }
 
 console.log("Liz Rios' favourite fruit is:", lizRiosFavFruit());
@@ -23,7 +30,11 @@ console.log("Liz Rios' favourite fruit is:", lizRiosFavFruit());
 // Complete the function so it returns Marie David's 2nd friend's name
 
 function marieDavid2ndFriend() {
-  // Your code goes here...
+  for(let i = 0; i < SOCBook.data.people.length; i++) {
+    if(SOCBook.data.people[i].name === "Marie David") {
+      return SOCBook.data.people[i].friends[1].name;
+    }  
+  }
 }
 
 console.log("Marie David's 2nd friend is:", marieDavid2ndFriend());
