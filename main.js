@@ -18,10 +18,7 @@ function lizRiosFavFruit() {
     if(SOCBook.data.people[i].name === "Liz Rios") {
       return SOCBook.data.people[i].favoriteFruit;
     }
-      
   }
-  
-
 }
 
 console.log("Liz Rios' favourite fruit is:", lizRiosFavFruit());
@@ -46,11 +43,18 @@ console.log("Marie David's 2nd friend is:", marieDavid2ndFriend());
 function cooperBradyGreeting() {
   // Your code goes here...
   // Select Cooper Brady's greeting message from the object
-  // Select the p tag with the id of message
-  // Set the text of the p tag to be the greeting message
+  for(let i = 0; i < SOCBook.data.people.length; i++) {
+    if(SOCBook.data.people[i].name === "Cooper Brady") {
+      return SOCBook.data.people[i].greeting;
+    }  
+  }
 }
+// Select the p tag with the id of message
+let greeting = document.querySelector("#message");
+// Set the text of the p tag to be the greeting message
+greeting.textContent = cooperBradyGreeting();
 
-cooperBradyGreeting();
+console.log(cooperBradyGreeting());
 
 // For Tasks 4, 5, 6, and 7 you will be getting much more programmatic with how you interact with the data, rather than manually finding and selecting
 
@@ -61,7 +65,12 @@ cooperBradyGreeting();
 // If we don't, return null
 
 function findPersonByEmail(email) {
-  // Your code goes in here...
+  for(let i = 0; i < SOCBook.data.people.length; i++) {
+    if(SOCBook.data.people[i].email === email) {
+      return SOCBook.data.people[i].name;
+    }  
+  }
+  return null;
 }
 
 const found = findPersonByEmail("carversalinas@comtent.com");
@@ -72,9 +81,11 @@ console.log("What I found:", found);
 
 function getMangoLovers() {
   let mangoLovers = [];
-
-  // Your code goes here...
-
+  for(let i = 0; i < SOCBook.data.people.length; i++) {
+    if(SOCBook.data.people[i].favoriteFruit === "mango") {
+      mangoLovers.push(SOCBook.data.people[i].name);
+    }  
+  }
   return mangoLovers;
 }
 
@@ -84,12 +95,42 @@ console.log("Who loves mango?", getMangoLovers());
 // Complete the function. Try and return the address of the person in the position in the array we've been handed
 
 function getAddress(positionInArray) {
-  // Your code goes here...
+  return SOCBook.data.people[positionInArray]["full address"];
 }
 
 console.log(getAddress(0));
 
 // Task 7
 // Show a profile for each person in the ul with id "profiles"
-// A profile should include a person's name, age, and their image
-// Remember, break this down and tackle it step by step!
+function displayProfiles() {
+  // link ul
+  const list = document.getElementById("profiles");
+  for(let i = 0; i < SOCBook.data.people.length; i++) {
+    // create element lh
+    const listPicture = document.createElement("lh");
+    listPicture.innerHTML = `<img src="${SOCBook.data.people[i].picture}">`;
+    // append li
+    list.appendChild(listPicture);
+    // create element li
+    const listHeader = document.createElement("li");
+    listHeader.textContent = "ID: " + SOCBook.data.people[i]["_id"];
+    // append lh
+    list.appendChild(listHeader)
+    // A profile should include a person's name, age, and their image
+    // create element li
+    const listName = document.createElement("li");
+    listName.textContent = "Name: " + SOCBook.data.people[i].name;
+    // append li
+    list.appendChild(listName);
+    // create element li
+    const listAge = document.createElement("li");
+    listAge.textContent = "Age: " + SOCBook.data.people[i].age;
+    // append li
+    list.appendChild(listAge);
+    const listSeparate = document.createElement("br");
+    // listSeparate.innerHTML = "&nbsp";
+    list.appendChild(listSeparate);
+  }
+  // Remember, break this down and tackle it step by step!
+}
+console.log(displayProfiles());
